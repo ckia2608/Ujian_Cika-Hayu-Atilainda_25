@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peminjaman Alat Praktik</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body>
+    
+    <h1>Peminjaman Alat Praktik Sekolah</h1>
+    <hr>
+
+    <h2>Daftar Alat Tersedia</h2>
+    <table border="1">
+        <thead>
+            <tr>
+            <th>ID Alat</th>
+            <th>Nama Alat</th>
+            <th>Kategori</th>
+            <th>Stok</th>
+            <th>Lokasi</th>
+        </tr>
+        </thead>
+
+        <tbody id="daftar_alat"></tbody>
+    </table>
+
+    <h2>Peminjaman Alat</h2>
+    <form id="Peminjaman">
+        <p>
+            <select id="id_alat" name="id_alat" required>
+                <option value=""> Pilih Alat </option>
+            </select>
+        </p>
+
+        <p>
+            <label for="nama_peminjam">Nama Peminjam :</label><br>
+            <input type="text" id="nama_peminjam" name="nama_peminjam" required>
+        </p>
+
+        <p>
+            <label for="kelas">Kelas :</label><br>
+            <input type="text" id="kelas" name="kelas" maxlength="30" required>
+        </p>
+
+        <p>
+            <label for="tanggal_pinjam">Tanggal Pinjam :</label><br>
+            <input type="date" id="tanggal_pinjam" name="tanggal_pinjam" required>
+        </p>
+
+        <p>
+            <label for="tanggal_kembali">Tanggal Kembali :</label><br>
+            <input type="date" id="tanggal_kembali" name="tanggal_kembali" required>
+        </p>
+
+        <p>
+            <label for="jumlah">Jumlah :</label><br>
+            <input type="number" id="jumlah" name="jumlah" required>
+        </p>
+
+        <button type="submit">Simpan Peminjaman</button>
+    </form>
+    <hr>
+
+    <table id="tabelpeminjaman" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama Peminjam</th>
+                <th>Kelas</th>
+                <th>Alat</th>
+                <th>Jumlah</th>
+                <th>Tanggal Pinjam</th>
+                <th>Tanggal Kembali</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="dataPeminjaman"></tbody>
+    </table>
+    <script src="app.js"></script>
+</body>
+</html>
