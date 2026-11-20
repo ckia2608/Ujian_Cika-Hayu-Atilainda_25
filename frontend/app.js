@@ -42,18 +42,26 @@ async function tampilkanPeminjaman() {
     riwayat.innerHTML = "";
 
     data.forEach(pinjam => {
-        riwayat.innerHTML += `
-            <tr>
-                <td>${pinjam.id_peminjaman}</td>
-                <td>${pinjam.nama_peminjam}</td>
-                <td>${pinjam.kelas}</td>
-                <td>${pinjam.nama_alat}</td>
-                <td>${pinjam.jumlah}</td>
-                <td>${pinjam.tanggal_pinjam}</td>
-                <td>${pinjam.tanggal_kembali || "-"}</td>
-            </tr>
-        `;
-    });
+    riwayat.innerHTML += `
+        <tr>
+            <td>${pinjam.id_peminjaman}</td>
+            <td>${pinjam.nama_peminjam}</td>
+            <td>${pinjam.kelas}</td>
+            <td>${pinjam.nama_alat}</td>
+            <td>${pinjam.jumlah}</td>
+            <td>${pinjam.tanggal_pinjam}</td>
+            <td>${pinjam.tanggal_kembali || "-"}</td>
+            <td>${pinjam.status}</td>
+            <td>
+                ${
+                    pinjam.status === "Dipinjam"
+                    ? `<button onclick="kembalikanAlat(${pinjam.id_peminjaman})">Kembalikan</button>`
+                    : "Selesai"
+                }
+            </td>
+        </tr>
+    `;
+});
 }
 
 tampilkanPeminjaman();
@@ -92,3 +100,18 @@ document.getElementById("Peminjaman").addEventListener("submit", async function(
         alert(hasil.message || "Peminjaman gagal disimpan");
     }
 });
+
+// Mengembalikan alat
+async function kembalikanAlat(id) {
+    const response = await fetch(`${API}/api/peminjaman/${id}`, {
+        method: "PUT"
+    });
+
+    if (response.ok) {
+        alert("Alat berhasil dikembalikan!");
+        tampilkanPeminjaman();
+        tampilkanAlat();
+    } else {
+        alert("Pengembalian gagal!");
+    }
+}
